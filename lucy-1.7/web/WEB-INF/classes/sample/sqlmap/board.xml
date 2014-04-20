@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com/DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="board">
+    <typeAlias alias="boardInfo" type="com.nhncorp.edu.sample.board.model.BoardInfo"/>
+    
+    <select id="getBoardCount" resultClass="Integer">
+    	 SELECT
+        	COUNT(*)
+        FROM board
+    </select>
+    
+     <select id="getBoardCountByUserId" resultClass="Integer">
+    	 SELECT
+        	COUNT(*)
+        FROM board
+        WHERE write_id = #userId#
+    </select>
+    
+    <select id="getBoardList" resultClass="boardInfo">
+    	 SELECT
+        	seq,
+        	title,
+        	content,
+        	write_id writeId,
+        	board_user.user_name writeName,
+        	TO_CHAR(register_ymdt, 'YYYY-MM-DD') registerYmdt,
+        	file_name fileName,
+        	file_real_name fileRealName
+        FROM board LEFT JOIN board_user ON board.write_id = board_user.id
+        LIMIT #from#, #to#
+    </select>
+    
+    <select id="getBoardListByUserId" resultClass="boardInfo">
+    	 SELECT
+        	seq,
+        	title,
+        	content,
+        	write_id writeId,
+        	board_user.user_name writeName,
+        	TO_CHAR(register_ymdt, 'YYYY-MM-DD') registerYmdt,
+        	file_name fileName,
+        	file_real_name fileRealName
+        FROM board LEFT JOIN board_user ON board.write_id = board_user.id
+        WHERE write_id = #userId#
+        LIMIT #from#, #to#
+    </select>
+    
+    <insert id="registerBoardInfo" parameterClass="boardInfo">
+        INSERT
+        INTO board (title, content, write_id, register_ymdt, file_name, file_real_name)
+        VALUES (#title#, #content#, #writeId#, CURRENT_TIMESTAMP, #fileName#, #fileRealName#)
+    </insert>
+    
+    <select id="getBoardInfo" resultClass="boardInfo">
+    	 SELECT
+        	seq,
+        	title,
+        	content,
+        	write_id writeId,
+        	board_user.user_name writeName,
+        	TO_CHAR(register_ymdt, 'YYYY-MM-DD HH24:MI:SS') registerYmdt,
+        	file_name fileName,
+        	file_real_name fileRealName
+        FROM board LEFT JOIN board_user ON board.write_id = board_user.id
+        WHERE seq = #seq#
+    </select>
+    
+    <update id="updateBoardInfo" parameterClass="boardInfo">
+    	UPDATE board 
+    	SET 
+    		title = #title#, 
+    		content = #content#,
+    		file_name = #fileName#,
+    		file_real_name = #fileRealName#
+    	WHERE seq = #seq#
+    </update>
+    
+     <delete id="deleteBoardInfo">
+    	DELETE FROM board 
+    	WHERE seq = #seq#
+    </delete>
+</sqlMap>

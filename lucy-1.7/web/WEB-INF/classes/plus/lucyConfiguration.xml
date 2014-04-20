@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.nhncorp.lucy.spring.core"/>
+	
+	<bean id="lucyConfiguration" class="com.nhncorp.lucy.spring.core.config.Configuration">
+		<property name="name" value="Lucy 1.7"/>
+		<property name="description" value="Lucy 1.7 Edu Project"/>
+		<property name="locale" value="ko_KR"/>
+		<property name="encoding" value="UTF-8"/>
+		<property name="metaCharset" value="UTF-8"/>
+		<property name="dataHandlerInfoList">
+			<list>
+				<ref bean="default"/>
+				<ref bean="data1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="default" class="com.nhncorp.lucy.spring.core.config.model.DataHandlerInfo">
+		<property name="name" value="default"/>
+		<property name="location" value="/plus/data.xml"/>
+	</bean>
+	
+	<bean id="data1" class="com.nhncorp.lucy.spring.core.config.model.DataHandlerInfo">
+		<property name="name" value="data1"/>
+		<property name="location" value="/plus/data1.xml"/>
+	</bean>
+	
+	<bean id="fileUploadInfo" class="com.nhncorp.lucy.spring.file.FileUploadInfo">
+		<property name="totalSizeMax" value="10485760"/>
+		<property name="sizeMax" value="3145728"/>
+		<property name="repositoryPath" value="d:\\tmp"/>
+	</bean>
+	
+	<bean id="localFileUploadManager" class="com.nhncorp.lucy.spring.file.manager.LocalFileUploadManager">
+		<property name="fileUploadInfo" ref="fileUploadInfo"/>
+	</bean>
+</beans>

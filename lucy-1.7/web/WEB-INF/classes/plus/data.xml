@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-data>
+	<include>/plus/inData.xml</include>
+	<data1>HelloWorld!</data1>
+	<data2>
+		<elem1>Lucy!!!</elem1>
+	</data2>
+</xml-data>
+

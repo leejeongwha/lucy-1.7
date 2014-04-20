@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="targetBean" class="aop.case2.TargetBean" />
+
+	<aop:config>
+		<aop:pointcut id="aopPointcut" expression="execution(* aop.case2..*.*(..))" />
+	</aop:config>
+
+	<bean id="aopAspect" class="aop.case2.AopAspect"/>
+
+	<aop:config>
+		<aop:aspect ref="aopAspect">
+			<aop:before method="before" pointcut-ref="aopPointcut" />
+			<aop:after method="after" pointcut-ref="aopPointcut" />
+		</aop:aspect>
+	</aop:config>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.WebProject">
+		<attributes>
+			<attribute name="hide" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="js/jquery-1.7.1.min.js|js/jquery-ui-1.8.14.custom.min.js" kind="src" path="web"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.4.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.nhncorp.edu.security">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<security:http use-expressions="true" entry-point-ref="entryPointAdapter" create-session="never">
+		<security:intercept-url pattern="/security/login" filters="none"/>
+		<security:intercept-url pattern="/**" access="isAuthenticated()"/>
+		<security:custom-filter ref="preAuthenticatedProcessingFilter" position="PRE_AUTH_FILTER" />
+		<security:custom-filter ref="requestAttributeSettingFilter" after="ANONYMOUS_FILTER" />
+		<security:access-denied-handler ref="accessDeniedHandlerAdapter"/>
+	</security:http>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="preauthAuthProvider" />
+	</security:authentication-manager>
+	
+	<bean id="userDetailsService" class="com.nhncorp.lucy.spring.security.UserDetailsService"/>
+
+	<bean id="preauthAuthProvider" 
+		class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+		<property name="preAuthenticatedUserDetailsService" ref="userDetailsService" />
+	</bean>
+	
+	<bean id="userFactory" class="com.nhncorp.edu.security.UserFactory">
+		<property name="provider" ref="providerCreatingFactoryBean"/>
+	</bean>
+	
+	<bean id="userPrincipal" class="com.nhncorp.edu.security.model.UserPrincipal" scope="prototype" />
+	
+	<bean id="providerCreatingFactoryBean" 
+		class="org.springframework.beans.factory.config.ProviderCreatingFactoryBean">
+		<property name="targetBeanName" value="userPrincipal"/>
+	</bean>
+	
+	<bean id="preAuthenticatedProcessingFilter"
+		class="com.nhncorp.lucy.spring.security.PreAuthenticatedProcessingFilter">
+		<property name="checkForPrincipalChanges" value="true"/>
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+	
+	<bean id="requestAttributeSettingFilter" 
+		class="com.nhncorp.lucy.spring.security.RequestAttributeSettingFilter"/>
+	
+	<bean id="accessDeniedHandler" class="com.nhncorp.edu.security.UserAccessDeniedHandler"/>
+	
+	<bean id="accessDeniedHandlerAdapter" 
+		class="com.nhncorp.lucy.spring.security.AnnotationAccessDeniedHandlerAdapter">
+		<property name="handler" ref="accessDeniedHandler"/>
+	</bean>
+	
+	<bean id="accessDeniedEventListener" 
+		class="com.nhncorp.lucy.spring.security.SpringSecurityAccessDeniedEventListener"/>
+	
+	<bean id="entryPointAdapter" 
+		class="com.nhncorp.lucy.spring.security.AnnotationEntryPointAdapter">
+		<property name="handler" ref="entryPoint"/>
+	</bean>
+	
+	<bean id="entryPoint" class="com.nhncorp.edu.security.UserEntryPoint"/>
+
+</beans>

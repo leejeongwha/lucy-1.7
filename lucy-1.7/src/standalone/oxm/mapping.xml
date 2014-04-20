@@ -1,0 +1,13 @@
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.codehaus.org/mapping.dtd">
+<mapping>
+	<class name="oxm.model.Member">
+		<map-to xml="member" />
+		<field name="id" type="string">
+			<bind-xml name="id" node="element" />
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="name" node="element" />
+		</field>
+	</class>
+</mapping>
+

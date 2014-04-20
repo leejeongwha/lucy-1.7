@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com/DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="boardUser">
+    <typeAlias alias="boardUser" type="orm.ibatis.model.BoardUser"/>
+
+    <select id="getBoardUserList" resultClass="boardUser">
+        SELECT
+        	id,
+        	passwd,
+        	user_name userName,
+        	age age,
+        	role role
+        FROM board_user
+        LIMIT #st#, #ed#
+    </select>
+    
+    <select id="getBoardUserById" resultClass="boardUser">
+    	 SELECT
+        	id,
+        	passwd,
+        	user_name userName,
+        	age age,
+        	role role
+        FROM board_user
+        WHERE id = #id#
+    </select>
+
+    <insert id="addBoardUser" parameterClass="boardUser">
+        INSERT
+        INTO board_user (id, passwd, user_name, age, role)
+        VALUES (#id#, #passwd#, #userName#, #age#, #role#)    
+    </insert>
+    
+    <select id="getUserCountById" resultClass="int">
+    	 SELECT
+        	COUNT(*)
+        FROM board_user
+        WHERE id = #id#
+    </select>
+    
+    <update id="updateBoardUser" parameterClass="boardUser">
+    	UPDATE board_user 
+    	SET 
+    		passwd = #passwd#, 
+    		user_name = #userName#, 
+    		age = #age#, 
+    		role = #role# 
+    	WHERE id = #id#
+    </update>
+    
+    <delete id="removeBoardUserById">
+    	DELETE FROM board_user 
+    	WHERE id = #id#
+    </delete>
+</sqlMap>

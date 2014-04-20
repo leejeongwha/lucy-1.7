@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/* common */
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, select, button {margin:0;padding:0}
+body, input, textarea, select, table, button {font-family:"돋움", Dotum, AppleGothic, sans-serif; font-size:12px}
+img, fieldset {border:0}
+hr {display:none}
+li {list-style:none}
+em, address {font-style:normal}
+a {text-decoration:none}
+a:hover, a:active, a:focus {text-decoration:underline}
+.blind {position:absolute; top:0; left:0; width:1px; height:1px; overflow:hidden; visibility:hidden; font-size:0; line-height:0}
+
+/* inline & block's position */
+.tl {text-align:left !important}
+.tc {text-align:center}
+.fl {float:left}
+.fr {float:right}
+
+/* buttons */
+a.btn_big {display:inline-block; padding-right:3px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat 100% 0; font-size:12px; color:#444; line-height:26px; word-spacing:-1px; text-decoration:none !important; white-space:nowrap}
+a.btn_big span,
+a.btn_big strong {display:block; padding:1px 9px 0 12px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat, cursor:pointer; _cursor:hand}
+a.btn_big.off span.,
+a.btn_big.off strong {color:#eeeeee; cursor:pointer; _cursor:arrow}
+a.btn_sml {display:inline-block; padding-right:3px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat 100% -27px; font-size:11px; color:#444; line-height:21px; letter-spacing:-1px; word-spacing:-1px; text-decoration:none !important; white-space:nowrap}
+a.btn_sml span,
+a.btn_sml strong {display:block; padding:1px 5px 0 7px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat 0 -27px}
+a.btn_xsml {display:inline-block; padding-right:3px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat 100% -48px; font-size:11px; color:#777; line-height:19px; letter-spacing:-1px; word-spacing:-1px; text-decoration:none !important}
+a.btn_xsml span,
+a.btn_xsml strong {display:block; padding:1px 6px 0 7px; background:url(http://static.naver.com/groupware/2010/bg_btn_default.gif) no-repeat 0 -48px}
+
+a.btn_grn {display:inline-block; padding:0, 3px; background-color:#3ca03c; font-size:12px; color:#fff; line-height:26px; word-spacing:-1px; text-decoration:none !important; white-space:nowrap; margin: 0, 5px;}
+a.btn_big span,
+a.btn_big strong {display:block; padding:1px 9px 0 12px; cursor:pointer; _cursor:hand}
+
+input.fileBtn {border-width: 0px; filter:alpha(opacity:0); position:absolute; top:0; left:0; width:89px; height:27px; cursor:pointer; _cursor:hand}
+
+a.btn_op100 {line-height:26px; word-spacing:-1px; text-decoration:none !important; white-space:nowrap;;}
+a.btn_op100 span,
+a.btn_op100 strong {margin: 5 5 5 5px; border:1px solid #000000; display:inline-block; background-color:#FFFFFF; font-size:12px; color:#000000; cursor:pointer; _cursor:hand}
+
+a.btn_red {line-height:26px; word-spacing:-1px; text-decoration:none !important; white-space:nowrap;;}
+a.btn_red span,
+a.btn_red strong {margin: 5 5 5 5px; border:1px solid #FF0000; display:inline-block; background-color:#FF0000; font-size:12px; color:#FFFFFF; cursor:pointer; _cursor:hand}

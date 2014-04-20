@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding>
+	<mapping name="member" class="oxm.model.Member">
+		<value name="id" field="id" />
+		<value name="name" field="name" />
+	</mapping>
+</binding>

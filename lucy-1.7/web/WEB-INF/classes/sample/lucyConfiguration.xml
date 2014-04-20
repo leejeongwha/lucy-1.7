@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.nhncorp.lucy.spring.core"/>
+	
+	<bean id="lucyConfiguration" class="com.nhncorp.lucy.spring.core.config.Configuration">
+		<property name="name" value="Lucy 1.7"/>
+		<property name="description" value="Lucy 1.7 Edu Project"/>
+		<property name="locale" value="ko_KR"/>
+		<property name="encoding" value="UTF-8"/>
+		<property name="metaCharset" value="UTF-8"/>
+		<property name="dataHandlerInfoList">
+			<list>
+				<ref bean="default"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="default" class="com.nhncorp.lucy.spring.core.config.model.DataHandlerInfo">
+		<property name="name" value="default"/>
+		<property name="location" value="sample/data.xml"/>
+	</bean>
+	
+	<bean id="fileUploadInfo" class="com.nhncorp.lucy.spring.file.FileUploadInfo">
+		<property name="totalSizeMax" value="10485760"/>
+		<property name="sizeMax" value="3145728"/>
+		<property name="repositoryPath" value="d:\\tmp"/>
+	</bean>
+	
+	<bean id="localFileUploadManager" class="com.nhncorp.lucy.spring.file.manager.LocalFileUploadManager">
+		<property name="fileUploadInfo" ref="fileUploadInfo"/>
+	</bean>
+	
+	<bean id="pagerConfigInfo" class="com.nhncorp.lucy.spring.core.web.config.model.PagerConfigInfo">
+		<property name="type" value="default"/>
+		<property name="pageSize" value="20"/>
+		<property name="indexSize" value="5"/>
+		<property name="stepType" value="page"/>
+		<property name="first" value="{0}&lt;span class='pre_end'&gt;맨앞&lt;/span&gt;{1}"/>
+		<property name="prev" value="{0}&lt;span class='pre'&gt;이전&lt;/span&gt;{1}"/>
+		<property name="next" value="{0}&lt;span class='next'&gt;다음&lt;/span&gt;{1}"/>
+		<property name="last" value="{0}&lt;span class='next_end'&gt;맨뒤&lt;/span&gt;{1}"/>
+		<property name="index" value="{0}{1}{2}"/>
+		<property name="current" value="&lt;strong&gt;{1}&lt;/strong&gt;"/>
+	</bean>
+	
+	<bean id="myPagerConfigInfo" class="com.nhncorp.lucy.spring.core.web.config.model.PagerConfigInfo">
+		<property name="type" value="default"/>
+		<property name="pageSize" value="5"/>
+		<property name="indexSize" value="5"/>
+		<property name="stepType" value="page"/>
+		<property name="first" value="{0}&lt;span class='pre_end'&gt;맨앞&lt;/span&gt;{1}"/>
+		<property name="prev" value="{0}&lt;span class='pre'&gt;이전&lt;/span&gt;{1}"/>
+		<property name="next" value="{0}&lt;span class='next'&gt;다음&lt;/span&gt;{1}"/>
+		<property name="last" value="{0}&lt;span class='next_end'&gt;맨뒤&lt;/span&gt;{1}"/>
+		<property name="index" value="{0}{1}{2}"/>
+		<property name="current" value="&lt;strong&gt;{1}&lt;/strong&gt;"/>
+	</bean>
+	
+	<bean id="pagerConfigInfos" class="com.nhncorp.lucy.spring.core.web.config.model.PagerConfigInfos">
+		<property name="map">
+			<map>
+				<entry key="default">
+					<ref local="pagerConfigInfo"/>
+				</entry>
+				<entry key="my">
+					<ref local="myPagerConfigInfo"/>
+				</entry>
+				<entry key="user">
+					<ref local="myPagerConfigInfo"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
