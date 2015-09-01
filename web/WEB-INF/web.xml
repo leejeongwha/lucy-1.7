@@ -9,7 +9,6 @@
 	</welcome-file-list>
 	
 	<!-- MVC Configuration -->
-	<!--
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -37,7 +36,6 @@
 		<servlet-name>mvcServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	-->
 	
 	<!-- BO Configuration -->
 	<!--
@@ -59,6 +57,7 @@
 	-->
 	
 	<!-- Plus Configuration -->
+	<!--  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -86,7 +85,8 @@
 		<servlet-name>plusServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	-->
+	
 	<!-- Security Configuration -->
 	<!--
 	<context-param>
